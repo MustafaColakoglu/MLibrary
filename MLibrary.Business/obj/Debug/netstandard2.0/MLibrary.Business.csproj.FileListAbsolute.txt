@@ -1,5 +1,4 @@
 C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.csprojAssemblyReference.cache
-C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.csproj.CoreCompileInputs.cache
 C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.AssemblyInfoInputs.cache
 C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.AssemblyInfo.cs
 C:\SourceCode\MLibrary\MLibrary.Business\bin\Debug\netstandard2.0\MLibrary.Business.deps.json
@@ -7,3 +6,4 @@ C:\SourceCode\MLibrary\MLibrary.Business\bin\Debug\netstandard2.0\MLibrary.Busin
 C:\SourceCode\MLibrary\MLibrary.Business\bin\Debug\netstandard2.0\MLibrary.Business.pdb
 C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.dll
 C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.pdb
+C:\SourceCode\MLibrary\MLibrary.Business\obj\Debug\netstandard2.0\MLibrary.Business.csproj.CoreCompileInputs.cache

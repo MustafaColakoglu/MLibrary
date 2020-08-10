@@ -75,5 +75,29 @@ namespace MLibrary.Business.Common
 
             return true;
         }
+
+
+        public static bool PasswordCheck(string password)
+        {
+            bool result = true;
+
+            if (password.Any(char.IsPunctuation) == false || password.Any(char.IsNumber) == false || password.Any(char.IsLetter) == false || password.Any(char.IsUpper) == false || password.Any(char.IsLower) == false)
+            {
+                result = false;
+            }
+            if (password.Length < 8)
+            {
+                result = false;
+            }
+
+
+
+            return result;
+        }
+
+        public static List<string> SplitWithString(string text, string spliter)
+        {
+            return text.Split(new string[] { spliter }, StringSplitOptions.None).ToList();
+        }
     }
 }

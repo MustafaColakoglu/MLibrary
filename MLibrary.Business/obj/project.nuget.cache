@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9tvjuNfyb/LzyzeMGHw8jStT4X/6KZYUrbEiMDcn57XzP7xDYHG11PMmAQHxeeiZQKPAvBOjSjf12nleN1dnGw==",
+  "dgSpecHash": "ILLaz6db/qEwGZTjfDLuyGJuBuFrMuGPCasoCO6Pwlj2HQAIhMAKAD/vCmDnCzpXlKyBlXgOFJvXYe084+d3Nw==",
   "success": true,
   "projectFilePath": "C:\\SourceCode\\MLibrary\\MLibrary.Business\\MLibrary.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\dell\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -44,5 +44,27 @@ namespace MLibrary.Business.REST
 
             return data;
         }
+
+        public static async Task<string> Get<T>(string url)
+        {
+            string data = "";
+
+            using (var client = new HttpClient())
+            {
+
+
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+
+
+
+                }
+            }
+
+            return data;
+        }
     }
 }

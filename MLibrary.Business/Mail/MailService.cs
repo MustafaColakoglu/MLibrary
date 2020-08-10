@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using System.Threading;
 
 namespace MLibrary.Business.Mail
 {
@@ -99,11 +101,10 @@ namespace MLibrary.Business.Mail
 
         }
 
-        public void SendEmailWithImageAndGmail(string subject, string toMail, string decrypt, List<string> imageNames, Template template, List<UploadFile> UploadFiles = null)
+        public void SendEmailWithImageAndGmail(string subject, string toMail, string decrypt, string template,string imageFilePath,List<string> imageNames)
         {
 
             this.FromMail = new MailAddress(this.MailUser, this.DisplayName);
-            List<MailImageModel> mailImageModels = new List<MailImageModel>();
             AlternateView avHtml;
             LinkedResource inline;
 
@@ -113,24 +114,22 @@ namespace MLibrary.Business.Mail
             try
             {
                 string mailBodyForInfoFormat = "";
-                string tempTemplate = template.HtmlContent;
-                tempTemplate = string.Format(tempTemplate, decrypt);
-                tempTemplate = tempTemplate.Replace("{", "{{").Replace("}", "}}");
-                avHtml = AlternateView.CreateAlternateViewFromString(tempTemplate, null, MediaTypeNames.Text.Html);
+                
+                avHtml = AlternateView.CreateAlternateViewFromString(template, null, MediaTypeNames.Text.Html);
                 avHtml.TransferEncoding = System.Net.Mime.TransferEncoding.QuotedPrintable;
-                foreach (var item in imageNames)
+                foreach (var imageName in imageNames)
                 {
-                    string imageFolderName = item.Replace("cid:", "");
-                    string path = $@"{HttpRuntime.AppDomainAppPath}\Image\MailingImage\{imageFolderName}";
+
+                    string path = Path.Combine(imageFilePath, imageName);
 
 
 
-                    if (item.Contains("png"))
+                    if (imageName.Contains("png"))
                     {
                         inline = new LinkedResource(path);
                         inline.ContentType = new ContentType("image/png");
                     }
-                    else if (item.Contains("gif"))
+                    else if (imageName.Contains("gif"))
                     {
                         inline = new LinkedResource(path, MediaTypeNames.Image.Gif);
                     }
@@ -141,30 +140,24 @@ namespace MLibrary.Business.Mail
 
 
 
-                    inline.ContentId = imageFolderName;
+                    inline.ContentId = imageName;
                     inline.TransferEncoding = System.Net.Mime.TransferEncoding.Base64;
-                    inline.ContentLink = new Uri($"cid:{imageFolderName}");
+                    inline.ContentLink = new Uri($"cid:{imageName}");
                     avHtml.LinkedResources.Add(inline);
 
 
 
 
-                    mailBodyForInfoFormat = string.Format(tempTemplate, inline.ContentId);
+                    mailBodyForInfoFormat = string.Format(template, inline.ContentId);
 
 
 
-                    MailImageModel mailImageModel = new MailImageModel
-                    {
-                        AttachPath = path,
-                        AlternateView = avHtml
-                    };
-
-                    mailImageModels.Add(mailImageModel);
+                    
 
                 }
 
 
-                mailBodyForInfoFormat = mailImageModels.Count > 0 ? mailBodyForInfoFormat : tempTemplate;
+           
 
 
 
@@ -203,41 +196,11 @@ namespace MLibrary.Business.Mail
 
 
 
-                    //if (mailImageModels.Count > 0)
-                    //{
-
-
-
-                    //    if (mailImageModels.Count != mm.Attachments.Count)
-                    //    {
-                    //        foreach (var item in mailImageModels)
-                    //        {
-
-
-
-
-
-
-                    //            mm.AlternateViews.Add(item.AlternateView);
-
-                    //        }
-                    //    }
-                    //}
+                   
 
                     mm.AlternateViews.Add(avHtml);
 
-                    if (UploadFiles.Count > 0)
-                    {
-                        foreach (var item in UploadFiles)
-                        {
-                            System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(item.Path);
-                            attachment.Name = item.FileName;
-                            mm.Attachments.Add(attachment);
-
-
-
-                        }
-                    }
+                  
 
 
 
@@ -247,11 +210,11 @@ namespace MLibrary.Business.Mail
 
                 }
             }
-            catch (System.Threading.ThreadAbortException ex)
+            catch (Exception ex)
             {
 
 
-                Thread.ResetAbort();
+                
             }
 
 

@@ -21,7 +21,7 @@ namespace MLibrary.Business.Cryptography
             }
             catch (Exception ex)
             {
-                return sIn;
+                return ex.Message;
             }
         }
 
@@ -39,7 +39,7 @@ namespace MLibrary.Business.Cryptography
             }
             catch (Exception ex)
             {
-                return sOut;
+                return ex.Message;
             }
         }
     }
